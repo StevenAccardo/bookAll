@@ -27,7 +27,7 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
       },
       {
-        test: /\.(woff(2)?|ttf|eot|svg)$/,
+        test: /\.(woff(2)?|ttf|eot)$/,
         use: {
           loader: 'file-loader',
           options: {
