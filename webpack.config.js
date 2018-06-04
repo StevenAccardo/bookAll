@@ -23,6 +23,10 @@ module.exports = {
         }
       },
       {
+        test: /\.html$/,
+        use: ['html-loader']
+      },
+      {
         test: /\.(s*)css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
       },
@@ -31,7 +35,9 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
-            name: 'assets/fonts/[name].[hash].[ext]'
+            name: '[name].[hash].[ext]',
+            outputPath: 'assets/fonts/',
+            publicPath: 'assets/fonts/'
           }
         }
       },
@@ -40,7 +46,9 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
-            name: 'assets/docs/[name].[hash].[ext]'
+            name: '[name].[hash].[ext]',
+            outputPath: 'assets/docs/',
+            publicPath: 'assets/docs/'
           }
         }
       },
@@ -49,7 +57,9 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
-            name: 'assets/audio/[name].[hash].[ext]'
+            name: '[name].[hash].[ext]',
+            outputPath: 'assets/audio/',
+            publicPath: 'assets/audio/'
           }
         }
       },
@@ -59,11 +69,15 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 40000,
-              name: 'assets/images/[name].[hash].[ext]'
+              limit: 10000,
+              name: '[name].[hash].[ext]',
+              outputPath: 'assets/images/',
+              publicPath: 'assets/images/'
             }
           },
-          'image-webpack-loader'
+          {
+            loader: 'image-webpack-loader'
+          }
         ]
       },
       {
@@ -71,7 +85,9 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
-            name: 'assets/videos/[name].[hash].[ext]'
+            name: '[name].[hash].[ext]',
+            outputPath: 'assets/videos/',
+            publicPath: 'assets/videos/'
           }
         }
       }
@@ -80,7 +96,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin('dist', {}),
     new HtmlWebpackPlugin({
-      inject: false,
+      inject: true,
       hash: true,
       template: './src/index.html',
       filename: 'index.html'
